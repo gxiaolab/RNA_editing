@@ -4,4 +4,7 @@ Original line 1
 Original line 2
 non-original line 3
 additional line 1
-additional line 2
+Red
+Green
+Yellow
+Blue
