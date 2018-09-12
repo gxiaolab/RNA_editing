@@ -2,4 +2,6 @@
 
 Original line 1
 Original line 2
-Original line 3
+non-original line 3
+additional line 1
+additional line 2
