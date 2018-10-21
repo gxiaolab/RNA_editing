@@ -6,7 +6,7 @@
 
 # ^^ cluster parameters to run jobs in parallel
 
-ja=batch.job
+ja=all_rbps_info.tab
 
 PARMS=($(awk "NR==$SLURM_ARRAY_TASK_ID" $ja))
 cell=${PARMS[0]}
