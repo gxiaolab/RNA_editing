@@ -4,7 +4,7 @@
 #SBATCH -p medium
 #SBATCH --mem=104G
 
-ja=cell.job
+ja=cell.job #HepG2 and K562
 
 PARMS=($(awk "NR==$SLURM_ARRAY_TASK_ID" $ja))
 cell=${PARMS[0]}
