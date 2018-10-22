@@ -71,6 +71,11 @@ files:
     differentially editing or "NS" for non-significant or non-differentially edited.
 
 
+To test the pipeline, simply download the main scripts (.py and .r), wrappers (.sh), the 
+input files from the 'data' directory and the 'batch.job' file. The wrapper scripts already
+include the filenames and parameters. 
+
+Make sure to modify cluster parameters (e.g. memory requirements, time allocation, etc)
 
 
 References:
