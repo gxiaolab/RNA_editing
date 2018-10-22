@@ -34,7 +34,8 @@ minCov = int(minCov)
 RDD_file_reps = RDD_file_reps.strip(',')
 SiteDict = defaultdict(dict)
 for i, rdd_file in enumerate(RDD_file_reps.split(',')):
-	parse_file(rdd_file, SiteDict, i + 1)
+    parse_file(rdd_file, SiteDict, i + 1)
+    sys.stderr.write('{} file, Rep{} done parsing\n'.format(rdd_file, i+1))
 
 mat1 = open(out_file, 'w')
 mat1.write('Site_ID\tMean_Coverage\tVar_Ratio\tMean_Ratio\n')
@@ -55,6 +56,9 @@ for (chrm, et), posDict in SiteDict.items():
 		if Mean_Coverage >= minCov and np.mean([ratio1, ratio2]) >= 0.1:
 			outline1 = [siteID, Mean_Coverage, Var_Editing_Ratio, Mean_Editing_Ratio]	
 			mat1.write('\t'.join(map(str, outline1)) + '\n')
+
+sys.stderr.write('DONE! output file:{} \n'.format(out_file))
+
 mat1.close()
 
 		

@@ -37,7 +37,8 @@ RDD_file_reps = RDD_file_reps.strip(',')
 
 SiteDict = defaultdict(dict)
 for i, rdd_file in enumerate(RDD_file_reps.split(',')):
-	parse_file(rdd_file, SiteDict, i + 1)
+    parse_file(rdd_file, SiteDict, i + 1)
+    sys.stderr.write('{} file, Rep{} done parsing\n'.format(rdd_file, i+1))
 
 print strftime("%a, %d %b %Y %H:%M:%S\t"), "Sites stored to dict"
  

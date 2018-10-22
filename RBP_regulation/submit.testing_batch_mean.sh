@@ -2,12 +2,13 @@
 #SBATCH -o cluster.out
 #SBATCH -e cluster.error
 #SBATCH -p medium
-#SBATCH --mem=104G
+#SBATCH --mem=4G
 
-ja=cell.job #HepG2 and K562
+cell=HepG2   
+batch=CONTROL305XWT
 
-PARMS=($(awk "NR==$SLURM_ARRAY_TASK_ID" $ja))
-cell=${PARMS[0]}
+outfile=data/BATCH_MEAN.${cell}_${batch}.by_rep.both_rep_cov.txt
 
+batch_files=`ls data/MATRIX_2.all_editing_sites.*.minCov_5.no_batch_mean.both_rep_cov.tab | tr '\n' ','`
 
-python pipeline.get_batch_means.py $cell &> log/Batch.Means.$cell
+python pipeline.get_batch_means.py $batch_files $outfile &> log/Batch.Means.$cell

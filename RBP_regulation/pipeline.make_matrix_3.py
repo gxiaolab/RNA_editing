@@ -9,22 +9,8 @@ from time import strftime
 ### by including the batch mean editing ratio
 
 
-def get_batch_info():
-	batches = {}
-	with open("batch.job") as FF:
-		for line in FF:
-			cell, rbp, batch = line.split()[:3]
-			if rbp.startswith('CONTROL'):
-				batches[(cell, rbp)] = rbp
-			else:
-				batches[(cell, rbp)] = batch	
-	return batches
-
-
-def get_batch_means(cell, rbp):
-	batches = get_batch_info()
-	control = batches[(cell, rbp)]
-	gg = open("data/BATCH_MEAN.{}_{}.by_rep.both_rep_cov.txt".format(cell, control))	
+def get_batch_means(Batch_Ratios_File):
+	gg = open(Batch_Ratios_File)	
 	BatchMeans = defaultdict(dict)
 	for line in gg:
 		# chr9:74597981:A.to.G    NA      C9orf85 UTR3    antisense-ALU   CONTROL003EKR
@@ -38,13 +24,12 @@ def get_batch_means(cell, rbp):
 
 
 print strftime("%a, %d %b %Y %H:%M:%S\t"), "Script starts"
-cell, rbp = sys.argv[1:3]
-RBP_Ratios_File = "data/MATRIX_2.all_editing_sites.{}_{}.minCov_5.no_batch_mean.both_rep_cov.tab".format(cell, rbp)
+RBP_Ratios_File, Batch_Ratios_File, RBP_Ratios_File_with_batch = sys.argv[1:4]
 
-BatchMeans = get_batch_means(cell, rbp)
+BatchMeans = get_batch_means(Batch_Ratios_File)
 print strftime("%a, %d %b %Y %H:%M:%S\t"), "Batch means obtained"
 
-mat2 = open(RBP_Ratios_File.replace('.no_batch_mean.both_rep_cov.tab', '.with_batch_mean.both_rep_cov.tab'), 'w')
+mat2 = open(RBP_Ratios_File_with_batch, 'w')
 mat2.write('Site_ID\tMeanRatio\tMeanCov\tBatchRatio\tGene\tRegion\tALU\tbatch\n')
 
 	

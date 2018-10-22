@@ -9,39 +9,21 @@ import numpy as np
 ### Calculate the mean editing ratio per
 ### site per batch
 
-
-def get_batches():
-	batches = defaultdict(list)
-	g = open("batch.job")
-	for line in g:
-		CELL, rbp, control = line.split()[:3]
-		if rbp.startswith("CONTROL"):
-			batches[rbp].append(rbp)
-		else:
-			batches[control].append(rbp)
-	g.close()
-	return batches
-
-
-cell, batch = sys.argv[1:3]
-
-batches = get_batches()
+batch_files, outfile = sys.argv[1:3]
 
 NA = "NA"
 cov_cutoff = 0.5
 
+	
 
+batch_files = batch_files.strip(',').split(',')
 
-outfile = "data/BATCH_MEAN.{}_{}.by_rep.both_rep_cov.txt".format(cell, batch)	
-out = open(outfile, 'w')	
+batch_N = len(batch_files)
 
-rbplist = batches[batch]
-batch_N = len(rbplist)
 
 if batch_N > 2:
 	batch_means = defaultdict(dict)
-	for rbp in rbplist:
-		ff = "data/MATRIX_2.all_editing_sites.{}_{}.minCov_5.no_batch_mean.both_rep_cov.tab".format(cell, rbp)
+	for ff in batch_files:
 		f = open(ff)
 		next(f)
 		for line in f:
@@ -55,10 +37,9 @@ if batch_N > 2:
 			except: 
 				batch_means[posbin][ksite] = [mean_ratio]
 		f.close()
-		print rbp, 'in', batch, 'done processing ....'
 else:
 	batch_means = defaultdict(dict)
-	ff = "data/MATRIX_2.all_editing_sites.{}_{}.minCov_5.no_batch_mean.tab".format(cell, batch)
+	ff = batch_files[0]
 	f = open(ff)
 	next(f)
 	for line in f:
@@ -70,7 +51,8 @@ else:
 		batch_means[posbin][ksite] = [mean_ratio]
 	f.close()
 
-print "Batch means {} done".format(batch)
+
+out = open(outfile, 'w')
 
 for posbin, sitedict in batch_means.items():
 	for ksite, ratios_list in sitedict.items():
@@ -80,10 +62,9 @@ for posbin, sitedict in batch_means.items():
 			batch_mean = np.mean( ratios_list )
 		else:
 			batch_mean = NA
-		outline = [ksite, batch_mean, '.', '.', '.', batch]
+		outline = [ksite, batch_mean, '.', '.', '.', '.']
 		out.write('\t'.join(map(str, outline)) + '\n')
-print "File writting {} done".format(batch)
-    	
+print "Batch means obtained"
 out.close()
 
 

@@ -26,14 +26,18 @@ echo $outf >> $logi
 
 
 ### Write matrix with editing ratios from batch means for differential editing  
+mat_test_in=data/MATRIX_2.all_editing_sites.${cell}_${rbp}.minCov_${minCov}.no_batch_mean.both_rep_cov.tab
 mat_test=data/MATRIX_2.all_editing_sites.${cell}_${rbp}.minCov_${minCov}.with_batch_mean.both_rep_cov.tab
-python pipeline.make_matrix_3.py $cell $rbp &>> $logi
+mat_batch_mean=data/BATCH_MEAN.${cell}_${ctrl}.by_rep.both_rep_cov.txt
+python pipeline.make_matrix_3.py $mat_test_in $mat_batch_mean $mat_test &>> $logi
+echo "Batch editing means added to testing matrices" >> $logi
+date >> $logi
 
 
 ### Variance Regression with training and testing datasets
 Reg_File=data/MATRIX_2.all_editing_sites.${cell}_${rbp}.minCov_${minCov}.with_batch_mean.both_rep_cov.in
 Rscript pipeline.Reg.r $mat_train $mat_test $Reg_File &>> $logi
-echo "Variance prediction done" >> $logi
+echo "Variance regression done" >> $logi
 date >> $logi
 
 
