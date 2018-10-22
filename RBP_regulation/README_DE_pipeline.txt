@@ -1,6 +1,8 @@
-After obtained highly-confident editing sites using 7-filters [1] and the GIREMI 
-pipeline [2], we made matrices in the format:
+After obtaining highly-confident editing sites using the GIREMI method [1][2], 
+we generate a text file that contains all the editing sites in the format:"
+
 Chromosome, Coordinate, Ref.Base, Number_of_edited_reads, Total_number_of_reads
+
 We then use the following steps to calculate differential editing from these 
 files:
 
@@ -42,3 +44,8 @@ files:
 
 The file: all_rbps_info.tab contains the name of all the RBPs with their 
 respective batch name in HepG2 and K562 cell
+
+References:
+1. Lee, J.-H., Ang, J. K. & Xiao, X. Analysis and design of RNA sequencing experiments for identifying RNA editing and other single-nucleotide variants. RNA 19, 725–732 (2013).
+2. Zhang, Q. & Xiao, X. Genome sequence-independent identification of RNA editing sites. Nat. Methods 12, 347–350 (2015)
+
