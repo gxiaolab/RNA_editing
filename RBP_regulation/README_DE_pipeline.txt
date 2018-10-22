@@ -18,10 +18,10 @@ files:
         Uses all samples.
     In the 'submit.training_and_testing_matrix.sh' runs the followfing command:
     
-    python pipeline.make_matrix_1.py $input_file $min_Coverage $output_file
+    python pipeline.make_matrix_1.py $input_file $min_Coverage $train_matrix
     (to obtain training data from control samples) and
     
-    python pipeline.make_matrix_2.py $input_file $min_Coverage $output_file
+    python pipeline.make_matrix_2.py $input_file $min_Coverage $test_matrix
     (to obtain testing data from all samples) 
         
     Example input files are provided in the 'data' folder with the name
@@ -35,9 +35,9 @@ files:
     editing site in a batch. The following command obtains the average
     editing level for every site:
     
-    python pipeline.get_batch_means.py $batch_files $output_file
+    python pipeline.get_batch_means.py $batch_test_files $batch_means
     
-    the $batch_files is a coma-separated list of files obtained from step1 
+    the $batch_test_files is a coma-separated list of files obtained from step1 
     (testing matrices)
     
     
