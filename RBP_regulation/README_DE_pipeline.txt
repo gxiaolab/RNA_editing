@@ -9,23 +9,18 @@ files:
 
 1) Obtain data matrices
 
-    The script: submit.training_and_testing_matrix.sh runs the python scripts:
-    - pipeline.make_matrix_1.py: Writes matrices for training the regression
-        model. Uses only control samples. 
-    - pipeline.make_matrix_2.py: Write data matrices testing the regression 
-        model respectively. The testing matrices are still incomplete at this 
-        point. They need to include the batch average editing level of the sites.
-        Uses all samples.
-    In the 'submit.training_and_testing_matrix.sh' runs the followfing command:
+    The script: submit.training_and_testing_matrix.sh runs the commands:
     
-    python pipeline.make_matrix_1.py $input_file $min_Coverage $train_matrix
-    (to obtain training data from control samples) and
+    python pipeline.make_matrix_1.py $input_files $min_Coverage $train_matrix
+    (to obtain training matrices from control samples) and
     
-    python pipeline.make_matrix_2.py $input_file $min_Coverage $test_matrix
-    (to obtain testing data from all samples) 
+    python pipeline.make_matrix_2.py $input_files $min_Coverage $test_matrix
+    (to obtain testing matrices from all samples. The testing matrices are still incomplete 
+    at this point. They need to include the batch average editing level of the sites) 
         
-    Example input files are provided in the 'data' folder with the name
-    'editing_sites.*.txt'
+    The $input_files is a list of coma-separated input files corresponding to all the 
+    replicates from one sample. Example input files are provided in the 'data' folder with 
+    the name 'editing_sites.*.txt'.
     
 
 2) Obtain batch means
@@ -73,7 +68,7 @@ files:
 
 To test the pipeline, simply download the main scripts (.py and .r), wrappers (.sh), the 
 input files from the 'data' directory and the 'batch.job' file. The wrapper scripts already
-include the filenames and parameters. 
+include the filenames and parameters and ready to run the input sample from the 'data' folder. 
 
 Make sure to modify cluster parameters (e.g. memory requirements, time allocation, etc)
 
