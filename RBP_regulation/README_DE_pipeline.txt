@@ -3,6 +3,7 @@ we generate a text file that contains all the editing sites in the format:"
 
 Chromosome, Coordinate, Ref.Base, Number_of_edited_reads, Total_number_of_reads
 
+Our approach to call differentially-edited sites is adapted from the BEAPR package [3].
 We then use the following steps to calculate differential editing from these 
 files:
 
@@ -76,4 +77,4 @@ Make sure to modify cluster parameters (e.g. memory requirements, time allocatio
 References:
 1. Lee, J.-H., Ang, J. K. & Xiao, X. Analysis and design of RNA sequencing experiments for identifying RNA editing and other single-nucleotide variants. RNA 19, 725–732 (2013).
 2. Zhang, Q. & Xiao, X. Genome sequence-independent identification of RNA editing sites. Nat. Methods 12, 347–350 (2015)
-
+3. Yang, E.-W. et al. Allele-specific binding of RNA-binding proteins reveals functional genetic variants in the RNA. bioRxiv 396275 (2018). doi:10.1101/396275
