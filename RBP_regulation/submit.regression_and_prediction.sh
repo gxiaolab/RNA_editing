@@ -2,22 +2,22 @@
 #SBATCH -o cluster.out
 #SBATCH -e cluster.error
 #SBATCH -p medium
-#SBATCH --mem=64G
+#SBATCH --mem=16G
 
 # ^^ cluster parameters to run jobs in parallel
 
 
-ja=all_rbps_info.tab
+ja=batch.job
 
 PARMS=($(awk "NR==$SLURM_ARRAY_TASK_ID" $ja))
 cell=${PARMS[0]}
 rbp=${PARMS[1]}
-ctrl=${PARMS[3]}
+ctrl=${PARMS[2]}
 minCov=5
 
 
 mat_train=data/MATRIX_1.all_editing_sites.${cell}_${ctrl}.minCov_${minCov}.tab
-logi=log/NewReg.matrix2.$cell.$rbp.$SLURM_ARRAY_TASK_ID
+logi=log/Reg.$cell.$rbp.$SLURM_ARRAY_TASK_ID
 
 
 ### Make RBP matrix for testing

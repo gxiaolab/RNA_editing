@@ -12,11 +12,11 @@ stats = importr('stats')
 cell, min_Coverage = sys.argv[1:3]
 min_coverage = int(min_Coverage)
 
-out = open("{}.CONTROLS.rel_batch_norm.NewDE.test_normal.de_sites_and_regions.relaxed.rm_batch_de.new_fdr_corr.txt".format(cell), 'w')
+out = open("Summary.all_de_sites.all_rbps.{}.new_fdr_corr.tab".format(cell), 'w')
 
 for SiteFile in glob("data/MATRIX_2.all_editing_sites.{}_*.minCov_{}.with_batch_mean.both_rep_cov.out".format(cell, min_Coverage)):
 	cell, rbp = path.basename(SiteFile).split('.')[2].split('_')
-	if not rbp.startswith('CONTROL'):
+	if rbp.startswith('CONTROL'):
 		continue
 	outlines = {}
 	pval_adj = {}
@@ -31,9 +31,9 @@ for SiteFile in glob("data/MATRIX_2.all_editing_sites.{}_*.minCov_{}.with_batch_
 			sig = "NA"
 			outline = [cell, rbp, SiteID, sig, et, Obs_Ratio, Batch_Ratio, Mean_Coverage, 20, pval, FDR, gene, region, alu, batch]
 			abs_dER = abs(Obs_Ratio - Batch_Ratio)
-			outlines[ksite] = outline
+			outlines[SiteID] = outline
 			if abs_dER > 0.05: 
-				pval_adj[ksite] = pval
+				pval_adj[SiteID] = pval
 	print cell, rbp, len(pval_adj), "DE sites"
 	if len(pval_adj) > 0:
 		k_sites, pvals = zip(*pval_adj.items())

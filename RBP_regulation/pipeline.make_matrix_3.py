@@ -11,9 +11,9 @@ from time import strftime
 
 def get_batch_info():
 	batches = {}
-	with open("all_rbps_info.tab") as FF:
+	with open("batch.job") as FF:
 		for line in FF:
-			cell, rbp, acc, batch = line.split()[:4]
+			cell, rbp, batch = line.split()[:3]
 			if rbp.startswith('CONTROL'):
 				batches[(cell, rbp)] = rbp
 			else:
