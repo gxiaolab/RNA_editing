@@ -1,20 +1,27 @@
 Summary files
 
-These files contain all differentially edited (DE) sites corresponding to all 
-RBP-KD samples from each cell line, HepG2 and K562. 
+We merged the list of all differentially edited (DE) sites corresponding to 
+each RBP-KD sample from the same cell line, HepG2 or K562.  
+
+These sites were further annotated based on the gene, genomic region and alu
+elements that they overlap. 
+
 
 Columns:
 1. Cell line where the RBP was knocked down
 2. RBP that was knocked-down. 
 3. Editing site coordinate
 4. Tag. DE for differentially edited, NS for non-significant or non differential
-5. Editing type e.g. AG = A to G
+5. Editing type e.g. AG = A to G editing.
 6. Editing ratio in the KD sample
 7. Mean editing ratio in the batch
 8. Mean coverage in the KD sample replicates
 9. P-value for the change in editing (KD vs Batch mean)
 10. Gene that overlaps this site. For multiple genes, they are ';' separated.
-11. Alu-overlap. Whether this site overlaps a sense-alu element, antisense, or doesn't 
+11. Genomic region that overlaps this site. In the case of multiple regions overlapping 
+  this site, we use the following order of priority: 
+  UTR3, exon, ncRNA_exon, intron, ncRNA_intron, UTR5, intergenic 
+12. Alu-overlap. Whether this site overlaps a sense-alu element, antisense, or doesn't 
   overlap an Alu at all.
-12. Batch name. 
-13. P-value, BH-corrected for multiple testing. 
+13. Batch name. 
+14. P-value, BH-corrected for multiple testing. 
