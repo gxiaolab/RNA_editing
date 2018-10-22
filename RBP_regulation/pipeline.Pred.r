@@ -24,10 +24,10 @@ for(i in 1:length(M_mean)){
 	abs_d <- c(abs_d, abs(M-m))
 }
 
-FDR <- p.adjust(pvals, "BH")
+#FDR <- p.adjust(pvals, "BH")
 
-out_df <- data.frame( df$SiteID , df$Mean_Coverage, M_mean, m_mean, df$exp_std, abs_d, pvals, FDR, df$gene, df$region, df$alu, df$batch )
-colnames(out_df) <- c("SiteID" , "Mean_Coverage",  "Obs_Ratio", "Batch_Ratio", "exp_std","ABS" ,"pvals", "FDR", "gene", "region", "alu", "batch")
+out_df <- data.frame( df$SiteID , df$Mean_Coverage, M_mean, m_mean, df$exp_std, abs_d, pvals, df$gene, df$region, df$alu, df$batch )
+colnames(out_df) <- c("SiteID" , "Mean_Coverage",  "Obs_Ratio", "Batch_Ratio", "exp_std","ABS" ,"pvals", "gene", "region", "alu", "batch")
 write.table( out_df , args[2] , quote = F,row.names =F ,sep="\t")
 
 print("Script finished, DONE")
