@@ -36,3 +36,10 @@ After running the third bash script, you should obtain the final output files:
 
 corresponding to the list of DE sites from ADAR-KD and DHX30-KD respectively
 
+# Instructions for use
+After having identified high-confidence editing sites, write down their coordinates, editing type, 
+and read count as shown in the demo input sample files. 
+These scripts do not require great memory allocations or prolonged runtime, therefore the editing sites
+from a single RNA-Seq experiment (10^4 to 10^5 editing sites) can be run on a standar desktop computer. 
+In average, the running time takes less than 10 minutes. 
+
