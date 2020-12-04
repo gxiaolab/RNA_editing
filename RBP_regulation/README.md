@@ -4,8 +4,10 @@ In reference to the Manuscript [Quinones et al. Comm. Bio. 2019](https://www.nat
 
 # Contents 
 - Summary files: Lists of Differentially Edited (DE) sites found in our study. Further description of 
-  these files is provided in the 'README_Summary_files' files. 
-- data: Folder containing sample data that can be processed by our pipeline. 
+  these files is provided in the [Summary files description](./README_Summary_files) files. 
+  - [Differentially edited sites in HepG2](./Summary.all_de_sites.all_rbps.HepG2.new_fdr_corr.final.header.tab)
+  - [Differentially edited sites in K562](./Summary.all_de_sites.all_rbps.HepG2.new_fdr_corr.final.header.tab)
+- data: [Data folder](./data)Folder containing sample data that can be processed by our pipeline. 
 - pipeline scripts: Python (.py) and R (.r) scripts that run the differential editing analysis. Further 
   description of the scripts and arguments is provided in the 'README_DE_pipeline.txt' file.
 - wrapper scripts: Bash (.sh) scripts that run the pipeline scripts. 
