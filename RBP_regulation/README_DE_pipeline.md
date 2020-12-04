@@ -1,48 +1,44 @@
-After obtaining highly-confident editing sites using the GIREMI method [1][2], 
-we generate a text file that contains all the editing sites in the format:"
-
-Chromosome, Coordinate, Ref.Base, Number_of_edited_reads, Total_number_of_reads
-
-Our approach to call differentially-edited sites is adapted from the BEAPR package [3].
+After obtaining highly-confident editing sites using the GIREMI method ([Lee et al. 2013](https://rnajournal.cshlp.org/content/19/6/725.long), [Zhang et al. 2015](https://www.nature.com/articles/nmeth.3314)), we generate a text file that contains all the editing sites in the format:
+```
+Chromosome, Coordinate, Reference Base, Number of edited reads, Total number of reads
+```
+Our approach to call differentially-edited sites is adapted from the BEAPR package [Yang et al.](https://www.nature.com/articles/s41467-019-09292-w).
 We then use the following steps to calculate differential editing from these 
 files:
 
 
-1) Obtain data matrices
+## 1) Obtain data matrices
 
-    The script: submit.training_and_testing_matrix.sh runs the commands:
-    
-    python pipeline.make_matrix_1.py $input_files $min_Coverage $train_matrix
-    (to obtain training matrices from control samples) and
-    
-    python pipeline.make_matrix_2.py $input_files $min_Coverage $test_matrix
-    (to obtain testing matrices from all samples. The testing matrices are still incomplete 
-    at this point. They need to include the batch average editing level of the sites) 
+    The script: *submit.training_and_testing_matrix.sh* is used to obtain training matrices from the control samples
+    ```
+    python pipeline.make_matrix_1.py <input_files> <min_Coverage> <train_matrix_file>
+    ```
+    Subsequently, run the following command to obtain testing matrices from all samples. 
+    ```
+    python pipeline.make_matrix_2.py <input_files> <min_Coverage> <test_matrix_file>
+    ```
+    The testing matrices are still incomplete at this point. They need to include the batch average editing level of the sites.
         
-    The $input_files is a list of coma-separated input files corresponding to all the 
-    replicates from one sample. Example input files are provided in the 'data' folder with 
-    the name 'editing_sites.*.txt'.
+    The <input_files> is a list of coma-separated files corresponding to all the replicates from one sample. Example input files are provided e.g.:
+    - [Editing sites from ADAR-KD (Rep1)](./data/editing_sites.ADAR_Rep1.txt).
+    - [Editing sites from ADAR-KD (Rep2)](./data/editing_sites.ADAR_Rep2.txt)
     
 
-2) Obtain batch means
+## 2) Obtain batch means
 
-    The script: submit.testing_batch_mean.sh runs the python script: 
-    pipeline.get_batch_means.py which obtains the average editing level of an 
-    editing site in a batch. The following command obtains the average
-    editing level for every site:
-    
-    python pipeline.get_batch_means.py $batch_test_files $batch_means
-    
-    the $batch_test_files is a coma-separated list of files obtained from step1 
-    (testing matrices)
+    The script *submit.testing_batch_mean.sh* runs the python script: 
+    ```
+    python pipeline.get_batch_means.py <test_matrix_file1,test_matrix_file2,test_matrix_file3> <test_matrix_all_batch_files_means>
+    ```
+    which obtains the average editing level of an editing site in a batch. 
     
     
-3) Run the regression and predict differential editing
+## 3) Run the regression and predict differential editing
 
-    The script: submit.regression_and_prediction.sh runs the following python
-    scripts:
-    
+    The script: *submit.regression_and_prediction.sh* runs the following python scripts:
+    ```
     python pipeline.make_matrix_3.py $input_file $batch_means $final_test_file
+    ```
     (Completes the testing matrices by including the batch editing level means
     to the testing matrices from step 1)
     
@@ -56,7 +52,7 @@ files:
     command)
     
 
-4) Adjust p-value for multiple testing:
+## 4) Adjust p-value for multiple testing:
     
     The script:
     
