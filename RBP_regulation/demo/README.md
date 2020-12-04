@@ -1,11 +1,31 @@
 # Pipeline description (Differential editing calculation)
-After obtaining highly-confident editing sites using the GIREMI method ([Lee et al. 2013](https://rnajournal.cshlp.org/content/19/6/725.long), [Zhang et al. 2015](https://www.nature.com/articles/nmeth.3314)), we generate a text file that contains all the editing sites in the format:
+Here, we describe the steps used to identify differentially edited sites. Our approach to call differentially-edited sites is adapted from the BEAPR package [Yang et al.](https://www.nature.com/articles/s41467-019-09292-w).
+
+After obtaining highly-confident editing sites using the GIREMI method ([Lee et al. 2013](https://rnajournal.cshlp.org/content/19/6/725.long), [Zhang et al. 2015](https://www.nature.com/articles/nmeth.3314)), we generate a text files that contains all the editing sites in the format:
 ```
 Chromosome, Coordinate, Reference Base, Number of edited reads, Total number of reads
 ```
-Our approach to call differentially-edited sites is adapted from the BEAPR package [Yang et al.](https://www.nature.com/articles/s41467-019-09292-w).
+(e.g.  [input file](./data/editing_sites.ADAR_Rep1.txt))
+
 We then use the following steps to calculate differential editing from these files:
 
+
+## Systems requirements
+- Python: Python version 2.7.12 was used. The Python scripts require the following non-standard packages:
+  - Numpy 
+  - rpy2.robjects.packages
+  - rpy2.robjects.vectors
+- R: R version 2.15 was used. The R scripts uses the following non-standard packages:
+  - ggplot2
+- Bash: Unix-based operating systems are required to run the wrappers (.sh) 
+  
+## Installation guide
+There is no need to install or compile the scripts in this repository. 
+
+
+## Instructions for use
+After having identified high-confidence editing sites, write down their coordinates, editing type, and read count as shown in the demo input sample files. 
+These scripts do not require great memory allocations or prolonged runtime, therefore the editing sites from a single RNA-Seq experiment (10^4 to 10^5 editing sites) can be run on a standar desktop computer. In average, the run time is less than 10 minutes. 
 
 ## 1) Obtain data matrices
 The script: *submit.training_and_testing_matrix.sh* is used to obtain training matrices from the control samples
