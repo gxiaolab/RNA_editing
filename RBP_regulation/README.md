@@ -1,6 +1,6 @@
 # Regulation of RNA editing by RNA-binding proteins (RBP)
 
-In reference to the Manuscript : "Regulation of RNA editing by RNA-binding proteins in human cells"
+In reference to the Manuscript [Quinones et al. Comm. Bio. 2019](https://www.nature.com/articles/s42003-018-0271-8)
 
 # Contents 
 - Summary files: Lists of Differentially Edited (DE) sites found in our study. Further description of 
@@ -26,9 +26,13 @@ There is no need to install or compile the scripts in this repository.
 # Demo
 The wrapper scripts (.sh) contain the parameters and file names from the 'data' directory
 and are ready to be ran. If the 'data' folder is in the directory as the wrapper scripts simply run:
-1. bash submit.training_and_testing_matrix.sh  
-2. bash submit.testing_batch_mean.sh
-3. bash submit.regression_and_prediction.sh
+```
+bash submit.training_and_testing_matrix.sh  
+
+bash submit.testing_batch_mean.sh
+
+bash submit.regression_and_prediction.sh
+```
 
 After running the third bash script, you should obtain the final output files:
 - data/MATRIX_2.all_editing_sites.HepG2_ADAR.minCov_5.with_batch_mean.both_rep_cov.out.fdr_corr.txt
@@ -41,5 +45,5 @@ After having identified high-confidence editing sites, write down their coordina
 and read count as shown in the demo input sample files. 
 These scripts do not require great memory allocations or prolonged runtime, therefore the editing sites
 from a single RNA-Seq experiment (10^4 to 10^5 editing sites) can be run on a standar desktop computer. 
-In average, the running time takes less than 10 minutes. 
+In average, the run time is less than 10 minutes. 
 
