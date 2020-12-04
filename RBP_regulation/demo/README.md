@@ -1,3 +1,4 @@
+# Pipeline description (Differential editing calculation)
 After obtaining highly-confident editing sites using the GIREMI method ([Lee et al. 2013](https://rnajournal.cshlp.org/content/19/6/725.long), [Zhang et al. 2015](https://www.nature.com/articles/nmeth.3314)), we generate a text file that contains all the editing sites in the format:
 ```
 Chromosome, Coordinate, Reference Base, Number of edited reads, Total number of reads
@@ -6,7 +7,6 @@ Our approach to call differentially-edited sites is adapted from the BEAPR packa
 We then use the following steps to calculate differential editing from these files:
 
 
-# Pipeline description
 ## 1) Obtain data matrices
 The script: *submit.training_and_testing_matrix.sh* is used to obtain training matrices from the control samples
 ```
